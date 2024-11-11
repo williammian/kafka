@@ -36,6 +36,12 @@ bin/kafka-topics.sh --describe --bootstrap-server localhost:9092
 
 ------------------
 
+alterar número de partições de um tópico
+
+bin/kafka-topics.sh --alter --zookeeper localhost:2181 --topic ECOMMERCE_NEW_ORDER --partitions 3
+
+------------------
+
 produzir mensagem
 
 bin/kafka-console-producer.sh --broker-list localhost:9092 --topic LOJA_NOVO_PEDIDO
@@ -63,5 +69,11 @@ consumir mensagem
 (desde a primeira)
 
 bin/kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic LOJA_NOVO_PEDIDO --from-beginning
+
+-----------------
+
+analisar grupos de consumo
+
+bin/kafka-console-consumer-groups.sh --all-groups --bootstrap-server localhost:9092 --describe
 
 -----------------
