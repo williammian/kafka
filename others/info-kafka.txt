@@ -1,0 +1,40 @@
+Zookeeper e Kafka no windows
+
+https://mmarcosab.medium.com/usando-apache-kafka-e-apache-zookeeper-no-windows-3e48e76e795f
+
+Zookeeper
+
+executar o comando zkserver via cmd em\bin do Apache Zookeeper
+Navegar até C:\kafka\apache-zookeeper-3.8.4\bin e executar zkserver;
+C:\kafka\apache-zookeeper-3.8.4\ e executar .\bin\zkserver;
+Ou de qualquer lugar executar C:\kafka\apache-zookeeper-3.8.4\bin\zkserver;
+
+A porta default é 2181 e pode ser alterada no \conf\zoo.cfg.
+
+Kafka
+
+Navegar até C:\kafka\kafka-3.9.0\ e executar:
+
+.\bin\windows\kafka-server-start.bat .\config\server.properties
+
+A porta padrão do Apache Kafka é 9092.
+
+-------------------------------------
+
+Docker kafka, zookeeper e kafka-ui
+
+
+https://cursos.alura.com.br/forum/topico-sugestao-docker-compose-kafka-zookeeper-e-kakfa-ui-279740
+
+https://medium.com/@ygorppolvere/kafka-com-docker-dedbbe9eff76
+
+------------------------------------
+
+Docker kafka-ui
+
+https://docs.kafka-ui.provectus.io/
+
+para acessar o kafka-ui
+http://localhost:8080
+
+-----------------------------------

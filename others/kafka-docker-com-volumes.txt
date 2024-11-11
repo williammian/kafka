@@ -1,0 +1,99 @@
+Para garantir que os dados do Kafka, Zookeeper e Kafka-UI persistam após reinicializações do container, você precisa adicionar volumes ao seu arquivo docker-compose.yml. O Docker Compose permite que você mapeie volumes persistentes do host para os containers, para garantir que os dados não se percam quando os containers forem parados ou removidos.
+
+Aqui está um exemplo de como você pode adicionar volumes ao seu docker-compose.yml para Kafka, Zookeeper e Kafka-UI:
+
+Exemplo de docker-compose.yml com volumes
+
+-------------------
+
+version: '3.8'
+
+services:
+  zookeeper:
+    image: wurstmeister/zookeeper:3.6
+    container_name: zookeeper
+    environment:
+      ZOOKEEPER_CLIENT_PORT: 2181
+      ZOOKEEPER_TICK_TIME: 2000
+    volumes:
+      - zookeeper-data:/data
+      - zookeeper-datalog:/datalog
+    ports:
+      - "2181:2181"
+
+  kafka:
+    image: wurstmeister/kafka:latest
+    container_name: kafka
+    environment:
+      KAFKA_ADVERTISED_LISTENER: INSIDE-KAFKA:9093
+      KAFKA_LISTENER_SECURITY_PROTOCOL: PLAINTEXT
+      KAFKA_LISTENER_NAME_INTERNAL: INSIDE
+      KAFKA_LISTENER_INTERNAL_PORT: 9093
+      KAFKA_LISTENER_INTERNAL_HOST: kafka
+      KAFKA_LISTENER_PORT: 9092
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: INSIDE:PLAINTEXT
+      KAFKA_LISTENER_NAME_EXTERNAL: OUTSIDE
+      KAFKA_LISTENER_EXTERNAL_PORT: 9094
+      KAFKA_ADVERTISED_LISTENER: INSIDE-KAFKA:9093
+      KAFKA_PORT: 9092
+    volumes:
+      - kafka-data:/var/lib/kafka/data
+    ports:
+      - "9092:9092"
+      - "9094:9094"  # A porta externa do Kafka, caso queira acesso externo
+
+  kafka-ui:
+    image: provectuslabs/kafka-ui:latest
+    container_name: kafka-ui
+    environment:
+      KAFKA_CLUSTERS_0_NAME: my-cluster
+      KAFKA_CLUSTERS_0_BOOTSTRAPSERVERS: kafka:9092
+    ports:
+      - "8080:8080"
+    volumes:
+      - kafka-ui-data:/app/kafka-ui
+
+volumes:
+  zookeeper-data:
+  zookeeper-datalog:
+  kafka-data:
+  kafka-ui-data:
+
+
+-----------------------------
+
+O que está acontecendo no exemplo:
+
+Zookeeper: Os dados do Zookeeper são armazenados em volumes dedicados para garantir que o estado do Zookeeper seja preservado. O Zookeeper usa dois diretórios, /data e /datalog, para armazenar o estado e os logs transacionais.
+
+Kafka: O Kafka usa um volume para persistir os dados em /var/lib/kafka/data, onde são armazenados os logs de tópicos e outras informações essenciais.
+
+Kafka-UI: Armazenamento persistente de dados do Kafka-UI, caso você deseje manter as configurações e preferências do painel de controle.
+
+Explicação dos volumes:
+
+volumes: A seção no final do arquivo define volumes nomeados, que serão usados pelos containers para persistir dados.
+
+zookeeper-data, zookeeper-datalog, kafka-data, kafka-ui-data: São volumes persistentes. O Docker vai criar e montar esses volumes automaticamente quando o docker-compose for executado.
+
+Agora, quando você reiniciar os containers ou até mesmo remover e recriar o ambiente com docker-compose down seguido de docker-compose up, os dados ainda serão mantidos. O Docker gerencia os volumes independentemente do ciclo de vida dos containers.
+
+------------------------------
+
+Como persistir os dados no seu sistema de arquivos local (opcional):
+
+Se você quiser armazenar os dados diretamente no seu sistema de arquivos, você pode usar caminhos específicos no host em vez de volumes Docker. Por exemplo:
+
+  volumes:
+    - ./data/kafka:/var/lib/kafka/data
+
+Esse exemplo mapeia o diretório local ./data/kafka para o diretório do Kafka dentro do container. Isso permite que você acesse e faça backup dos dados diretamente no seu sistema de arquivos.
+
+Como verificar a persistência de dados:
+
+Suba os containers: Execute docker-compose up para iniciar os containers com volumes persistentes.
+
+Verifique se os dados estão sendo salvos: Pare os containers com docker-compose down, e depois execute docker-compose up novamente. Verifique se os dados continuam acessíveis, o que indica que a persistência está funcionando corretamente.
+
+Com essa configuração, seus dados do Kafka e Zookeeper não serão apagados quando os containers forem reiniciados, garantindo que o estado do sistema seja preservado.

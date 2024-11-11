@@ -1,0 +1,67 @@
+Rodando zookeeper/kafka/kafka-ui via docker
+
+docker-compose up
+
+----------------
+
+acessar terminal do container kafka (pelo nome)
+
+docker exec -it kafka /bin/sh
+
+------------------
+
+ir até a pasta onde está o kafka instalado no container
+
+cd /opt/bitnami/kafka
+
+------------------
+
+comando para criar tópico
+
+bin/kafka-topics.sh --create --bootstrap-server localhost:9092 --replication-factor 1 --partitions 1 --topic LOJA_NOVO_PEDIDO
+
+-------------------
+
+listar tópicos criados
+
+bin/kafka-topics.sh --list --bootstrap-server localhost:9092
+
+resultado > LOJA_NOVO_PEDIDO
+
+------------------
+
+descrever tópicos
+
+bin/kafka-topics.sh --describe --bootstrap-server localhost:9092
+
+------------------
+
+produzir mensagem
+
+bin/kafka-console-producer.sh --broker-list localhost:9092 --topic LOJA_NOVO_PEDIDO
+
+Quando o console-producer na linha de comando, cada linha que escrevemos corresponde a uma mensagem.
+Poderíamos, por exemplo, criar uma mensagem dizendo que o pedido zero teve valor de 550 reais
+
+>pedido0,550
+>pedido1,330
+>pedido2,67213
+>
+
+-----------------
+
+consumir mensagem
+
+(novas a partir do momento de execução do comando)
+
+bin/kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic LOJA_NOVO_PEDIDO
+
+-----------------
+
+consumir mensagem
+
+(desde a primeira)
+
+bin/kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic LOJA_NOVO_PEDIDO --from-beginning
+
+-----------------
