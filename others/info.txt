@@ -1,1 +1,24 @@
 https://github.com/alura-cursos/kafka-introducao-e-microservicos
+
+-------------
+
+Se utilizado o docker-compose
+
+./kafka/docker/docker-compose.yml
+
+Criar os diretórios
+
+./kafka/docker/data/zookeeper/data
+./kafka/docker/data/zookeeper/datalog
+./kafka/docker/logs/zookeeper/
+
+./kafka/docker/data/kafka
+./kafka/docker/logs/kafka
+./kafka/docker/info/kafka
+
+./kafka/docker/data/kafka-ui
+./kafka/docker/logs/kafka-ui
+
+-----------------
+
+

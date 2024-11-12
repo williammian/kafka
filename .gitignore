@@ -2,6 +2,8 @@ ecommerce/target/
 ecormerce/.idea/
 
 docker/data/
+docker/logs/
+docker/info/
 
 target/
 !.mvn/wrapper/maven-wrapper.jar
