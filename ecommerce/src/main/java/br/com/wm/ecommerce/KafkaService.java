@@ -1,4 +1,4 @@
-package br.com.wm;
+package br.com.wm.ecommerce;
 
 import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.clients.consumer.KafkaConsumer;

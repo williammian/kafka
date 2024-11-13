@@ -1,4 +1,4 @@
-package br.com.wm;
+package br.com.wm.ecommerce;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
