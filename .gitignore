@@ -1,3 +1,10 @@
+microservicos/ecommerce/.idea/
+microservicos/ecommerce/common-kafka/target/
+microservicos/ecommerce/service-email/target/
+microservicos/ecommerce/service-fraud-detector/target/
+microservicos/ecommerce/service-log/target/
+microservicos/ecommerce/service-new-order/target/
+
 ecommerce/target/
 ecormerce/.idea/
 
