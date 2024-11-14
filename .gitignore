@@ -1,3 +1,10 @@
+docker/data/
+docker/logs/
+docker/info/
+
+ecommerce/target/
+ecormerce/.idea/
+
 microservicos/ecommerce/.idea/
 microservicos/ecommerce/common-kafka/target/
 microservicos/ecommerce/service-email/target/
@@ -5,12 +12,12 @@ microservicos/ecommerce/service-fraud-detector/target/
 microservicos/ecommerce/service-log/target/
 microservicos/ecommerce/service-new-order/target/
 
-ecommerce/target/
-ecormerce/.idea/
-
-docker/data/
-docker/logs/
-docker/info/
+microservicos-evolution/ecommerce/.idea/
+microservicos-evolution/ecommerce/common-kafka/target/
+microservicos-evolution/ecommerce/service-email/target/
+microservicos-evolution/ecommerce/service-fraud-detector/target/
+microservicos-evolution/ecommerce/service-log/target/
+microservicos-evolution/ecommerce/service-new-order/target/
 
 target/
 !.mvn/wrapper/maven-wrapper.jar
