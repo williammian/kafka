@@ -19,6 +19,14 @@ microservicos-evolution/ecommerce/service-fraud-detector/target/
 microservicos-evolution/ecommerce/service-log/target/
 microservicos-evolution/ecommerce/service-new-order/target/
 
+microservicos-evolution2/ecommerce/.idea/
+microservicos-evolution2/ecommerce/common-kafka/target/
+microservicos-evolution2/ecommerce/service-email/target/
+microservicos-evolution2/ecommerce/service-fraud-detector/target/
+microservicos-evolution2/ecommerce/service-log/target/
+microservicos-evolution2/ecommerce/service-new-order/target/
+microservicos-evolution2/ecommerce/service-reading-report/target/
+
 target/
 !.mvn/wrapper/maven-wrapper.jar
 !**/src/main/**/target/
