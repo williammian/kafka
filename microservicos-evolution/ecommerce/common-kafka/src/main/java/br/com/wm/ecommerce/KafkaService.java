@@ -14,6 +14,9 @@ import java.util.concurrent.ExecutionException;
 import java.util.regex.Pattern;
 
 class KafkaService<T> implements Closeable {
+
+    private static final String SERVER_CONFIG = "127.0.0.1:29093"; //29093 -> 3 brokers // 29092 -> 1 broker
+
     private final KafkaConsumer<String, T> consumer;
     private final ConsumerFunction parse;
 
@@ -53,7 +56,7 @@ class KafkaService<T> implements Closeable {
 
     private Properties getProperties(Class<T> type, String groupId, Map<String, String> overrideProperties) {
         var properties = new Properties();
-        properties.setProperty(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, "127.0.0.1:29092");
+        properties.setProperty(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, SERVER_CONFIG);
         properties.setProperty(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class.getName());
         properties.setProperty(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, GsonDeserializer.class.getName());
         properties.setProperty(ConsumerConfig.GROUP_ID_CONFIG, groupId);
