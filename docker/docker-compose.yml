@@ -32,7 +32,7 @@ services:
     volumes:
       - ./data/kafka1:/var/lib/kafka/data
       - ./logs/kafka1:/opt/bitnami/kafka/logs
-      - ./info/kafka1:/bitnami/kafka/data
+#      - ./info/kafka1:/bitnami/kafka/data
     depends_on:
       - zookeeper
 
@@ -55,7 +55,7 @@ services:
     volumes:
       - ./data/kafka2:/var/lib/kafka/data
       - ./logs/kafka2:/opt/bitnami/kafka/logs
-      - ./info/kafka2:/bitnami/kafka/data
+#      - ./info/kafka2:/bitnami/kafka/data
     depends_on:
       - zookeeper
 
@@ -78,7 +78,7 @@ services:
     volumes:
       - ./data/kafka3:/var/lib/kafka/data
       - ./logs/kafka3:/opt/bitnami/kafka/logs
-      - ./info/kafka3:/bitnami/kafka/data
+#      - ./info/kafka3:/bitnami/kafka/data
     depends_on:
       - zookeeper
 
