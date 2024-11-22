@@ -1,6 +1,4 @@
 docker/data/
-docker/logs/
-docker/info/
 
 ecommerce/target/
 ecormerce/.idea/

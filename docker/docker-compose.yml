@@ -9,9 +9,9 @@ services:
     environment:
       - ALLOW_ANONYMOUS_LOGIN=yes
     volumes:
-      - ./data/zookeeper/data:/data
-      - ./data/zookeeper/datalog:/datalog
-      - ./logs/zookeeper:/opt/bitnami/zookeeper/logs
+      - ./data/data/zookeeper/data:/data
+      - ./data/data/zookeeper/datalog:/datalog
+      - ./data/logs/zookeeper:/opt/bitnami/zookeeper/logs
 
   kafka1:
     image: bitnami/kafka:latest
@@ -30,9 +30,9 @@ services:
       - KAFKA_CFG_REPLICATION_FACTOR=3
       - ALLOW_PLAINTEXT_LISTENER=yes
     volumes:
-      - ./data/kafka1:/var/lib/kafka/data
-      - ./logs/kafka1:/opt/bitnami/kafka/logs
-#      - ./info/kafka1:/bitnami/kafka/data
+      - ./data/data/kafka1:/var/lib/kafka/data
+      - ./data/logs/kafka1:/opt/bitnami/kafka/logs
+#      - ./data/info/kafka1:/bitnami/kafka/data
     depends_on:
       - zookeeper
 
@@ -53,9 +53,9 @@ services:
       - KAFKA_CFG_REPLICATION_FACTOR=3
       - ALLOW_PLAINTEXT_LISTENER=yes
     volumes:
-      - ./data/kafka2:/var/lib/kafka/data
-      - ./logs/kafka2:/opt/bitnami/kafka/logs
-#      - ./info/kafka2:/bitnami/kafka/data
+      - ./data/data/kafka2:/var/lib/kafka/data
+      - ./data/logs/kafka2:/opt/bitnami/kafka/logs
+#      - ./data/info/kafka2:/bitnami/kafka/data
     depends_on:
       - zookeeper
 
@@ -76,9 +76,9 @@ services:
       - KAFKA_CFG_REPLICATION_FACTOR=3
       - ALLOW_PLAINTEXT_LISTENER=yes
     volumes:
-      - ./data/kafka3:/var/lib/kafka/data
-      - ./logs/kafka3:/opt/bitnami/kafka/logs
-#      - ./info/kafka3:/bitnami/kafka/data
+      - ./data/data/kafka3:/var/lib/kafka/data
+      - ./data/logs/kafka3:/opt/bitnami/kafka/logs
+#      - ./data/info/kafka3:/bitnami/kafka/data
     depends_on:
       - zookeeper
 
@@ -98,5 +98,5 @@ services:
       - KAFKA_CLUSTERS_0_BOOTSTRAPSERVERS=kafka1:9093,kafka2:9094,kafka3:9095
       - KAFKA_CLUSTERS_0_ZOOKEEPER=zookeeper:2181
     volumes:
-      - ./data/kafka-ui:/app/kafka-ui
-      - ./logs/kafka-ui:/var/log/kafka-ui
+      - ./data/data/kafka-ui:/app/kafka-ui
+      - ./data/logs/kafka-ui:/var/log/kafka-ui
