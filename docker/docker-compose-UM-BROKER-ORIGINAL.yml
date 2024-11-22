@@ -9,9 +9,9 @@ services:
     environment:
       - ALLOW_ANONYMOUS_LOGIN=yes
     volumes:
-      - ./data/zookeeper/data:/data
-      - ./data/zookeeper/datalog:/datalog
-      - ./logs/zookeeper:/opt/bitnami/zookeeper/logs
+      - ./data/data/zookeeper/data:/data
+      - ./data/data/zookeeper/datalog:/datalog
+      - ./data/logs/zookeeper:/opt/bitnami/zookeeper/logs
       
   kafka:
     image: bitnami/kafka:latest
@@ -29,9 +29,9 @@ services:
       - KAFKA_CFG_NUM_PARTITIONS=3
       - ALLOW_PLAINTEXT_LISTENER=yes
     volumes:
-      - ./data/kafka:/var/lib/kafka/data
-      - ./logs/kafka:/opt/bitnami/kafka/logs
-      - ./info/kafka:/bitnami/kafka/data
+      - ./data/data/kafka:/var/lib/kafka/data
+      - ./data/logs/kafka:/opt/bitnami/kafka/logs
+      - ./data/info/kafka:/bitnami/kafka/data
     depends_on:
       - zookeeper
 
@@ -49,6 +49,6 @@ services:
       - KAFKA_CLUSTERS_0_BOOTSTRAPSERVERS=kafka:9092
       - KAFKA_CLUSTERS_0_ZOOKEEPER=zookeeper:2181
     volumes:
-      - ./data/kafka-ui:/app/kafka-ui
-      - ./logs/kafka-ui:/var/log/kafka-ui
+      - ./data/data/kafka-ui:/app/kafka-ui
+      - ./data/logs/kafka-ui:/var/log/kafka-ui
  
