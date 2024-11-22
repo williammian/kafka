@@ -15,7 +15,7 @@ public class BatchSendMessageService {
     private final Connection connection;
 
     BatchSendMessageService() throws SQLException {
-        String url = "jdbc:sqlite:users_database.db";
+        String url = "jdbc:sqlite:./target/users_database.db";
         connection = DriverManager.getConnection(url);
         try {
             connection.createStatement().execute("create table Users (" +
@@ -27,7 +27,7 @@ public class BatchSendMessageService {
         }
     }
 
-    public static void main(String[] args) throws SQLException {
+    public static void main(String[] args) throws SQLException, ExecutionException, InterruptedException {
         var batchService = new BatchSendMessageService();
         try (var service = new KafkaService<>(BatchSendMessageService.class.getSimpleName(),
                 "ECOMMERCE_SEND_MESSAGE_TO_ALL_USERS",

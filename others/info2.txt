@@ -7,3 +7,11 @@ No navegador
 http://localhost:8088/new?email=teste@email.com&amount=5153
 
 http://localhost:8088/admin/generate-reports
+
+Lembrar de rodar o 
+BatchSendMessageService
+CreateUserService
+ReadingReportService
+com Working directory $MODULE_WORKING_DIR$ (no módulo)
+devido a recursos próprios utilizados dentro de cada módulo específico
+ex: sqlite bd em target e esqueleto do relatório em resources

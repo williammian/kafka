@@ -7,12 +7,13 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.Map;
 import java.util.UUID;
+import java.util.concurrent.ExecutionException;
 
 public class CreateUserService {
     private final Connection connection;
 
     CreateUserService() throws SQLException {
-        String url = "jdbc:sqlite:users_database.db";
+        String url = "jdbc:sqlite:./target/users_database.db";
         connection = DriverManager.getConnection(url);
         try {
             connection.createStatement().execute("create table Users (" +
@@ -24,7 +25,7 @@ public class CreateUserService {
         }
     }
 
-    public static void main(String[] args) throws SQLException {
+    public static void main(String[] args) throws SQLException, ExecutionException, InterruptedException {
         var createUserService = new CreateUserService();
         try (var service = new KafkaService<>(CreateUserService.class.getSimpleName(),
                 "ECOMMERCE_NEW_ORDER",
