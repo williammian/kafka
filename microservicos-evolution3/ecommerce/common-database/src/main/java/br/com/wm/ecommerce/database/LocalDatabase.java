@@ -39,4 +39,8 @@ public class LocalDatabase {
         return prepare(query, params).executeQuery();
     }
 
+    public void close() throws SQLException {
+        connection.close();
+    }
+
 }
